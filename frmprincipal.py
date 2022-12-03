@@ -1,6 +1,6 @@
 import tkinter as tk
 import tkinter.font as tkFont
-#from frmlogin import Login
+from frmlogin import Login
 from dal.db import Db
 
 class App:
@@ -28,8 +28,8 @@ class App:
         GButton_71["command"] = self.GButton_71_command
 
     def GButton_71_command(self):
-        #Login(self.root)
-        print("hola mundo")
+        Login(self.root)
+        #print("hola mundo")
 
 if __name__ == "__main__":
     Db.crear_tablas()
