@@ -51,7 +51,7 @@ class Login(tk.Toplevel):
         GLineEdit_723["justify"] = "left"
         GLineEdit_723["text"] = ""
         GLineEdit_723.place(x=110,y=50,width=280,height=30)
-        GLineEdit_723["show"] = ""*""
+        ##GLineEdit_723["show"] = ""*""
 
         GButton_962=tk.Button(self)
         GButton_962["bg"] = "#f0f0f0"
