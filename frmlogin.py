@@ -50,25 +50,7 @@ class Login(tk.Toplevel):
         GLabel_267["justify"] = "center"
         GLabel_267["text"] = "Contraseña:"
         GLabel_267.place(x=30,y=50,width=70,height=25)
-
-        GLineEdit_511=tk.Entry(self)
-        GLineEdit_511["borderwidth"] = "1px"
-        ft = tkFont.Font(family='Times',size=10)
-        GLineEdit_511["font"] = ft
-        GLineEdit_511["fg"] = "#333333"
-        GLineEdit_511["justify"] = "left"
-        GLineEdit_511["text"] = ""
-        GLineEdit_511.place(x=110,y=10,width=280,height=30)
-
-        GLineEdit_723=tk.Entry(self)
-        GLineEdit_723["borderwidth"] = "1px"
-        ft = tkFont.Font(family='Times',size=10)
-        GLineEdit_723["font"] = ft
-        GLineEdit_723["fg"] = "#333333"
-        GLineEdit_723["justify"] = "left"
-        GLineEdit_723["text"] = ""
-        GLineEdit_723.place(x=110,y=50,width=280,height=30)
-        GLineEdit_723["show"] = ""*""
+        
 
         GButton_962=tk.Button(self)
         GButton_962["bg"] = "#f0f0f0"
@@ -125,5 +107,6 @@ class Login(tk.Toplevel):
 
     def abrir_user(self):
         User(self.master)
+
 
 
