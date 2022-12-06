@@ -1,3 +1,6 @@
 
-*.pyc
 *.db-journal
+__pycache__/frmuser.cpython-310.pyc
+bll/__pycache__/roles.cpython-310.pyc
+bll/__pycache__/usuarios.cpython-310.pyc
+__pycache__/frmuser.cpython-310.pyc
