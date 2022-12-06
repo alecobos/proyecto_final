@@ -188,7 +188,7 @@ class User(tk.Toplevel):
         GButton_341["justify"] = "center"
         GButton_341["text"] = "Cancelar"
         GButton_341.place(x=350,y=370,width=70,height=25)
-        GButton_341["command"] = self.GButton_341_command        
+        GButton_341["command"] = self.GButton_341_command 
 
     def get_value(self, name):
         return self.nametowidget(name).get()
