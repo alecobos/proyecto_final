@@ -34,6 +34,7 @@ class App:
 if __name__ == "__main__":
     Db.crear_tablas()
     Db.poblar_tablas()
+    Db.poblar_tablas_salas()
     root = tk.Tk()
     root.iconbitmap(default=f"cinemar.ico")
     app = App(root)
