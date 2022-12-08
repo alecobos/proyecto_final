@@ -9,3 +9,7 @@ __pycache__/frmdashboard.cpython-310.pyc
 __pycache__/frmlogin.cpython-310.pyc
 __pycache__/frmuser.cpython-310.pyc
 __pycache__/frmusers.cpython-310.pyc
+__pycache__/frmdashboard.cpython-310.pyc
+*.pyc
+*.pyc
+__pycache__/frmlogin.cpython-310.pyc
