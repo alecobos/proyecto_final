@@ -14,3 +14,8 @@ __pycache__/frmdashboard.cpython-310.pyc
 *.pyc
 __pycache__/frmlogin.cpython-310.pyc
 *.pyc
+__pycache__/frmdashboard.cpython-310.pyc
+__pycache__/frmdashboard.cpython-310.pyc
+__pycache__/frmlogin.cpython-310.pyc
+__pycache__/frmusers.cpython-310.pyc
+bll/__pycache__/usuarios.cpython-310.pyc
