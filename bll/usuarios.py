@@ -12,9 +12,9 @@ def actualizar(id, apellido, nombre, fecha_nacimiento, dni, correo_electronico, 
 
 def eliminar(id, logical = True):    
     if logical:
-        sql = "UPDATE Usuarios SET Activo = 0 WHERE UsuarioId = ? AND Activo = 1;"
+        sql = "UPDATE Usuarios SET Activo = 0 WHERE IdUsuario = ? AND Activo = 1;"
     else:
-        sql = "DELETE FROM Usuarios WHERE UsuarioId = ?;"
+        sql = "DELETE FROM Usuarios WHERE IdUsuario = ?;"
     parametros = (id,)
     Db.ejecutar(sql, parametros)
 
@@ -47,3 +47,13 @@ def existe(usuario):
     result = Db.consultar(sql, parametros, False)
     count = int(result[0])
     return count == 1
+
+
+def obtener_id(id):
+    sql = '''SELECT u.IdUsuario, u.Apellido, u.Nombre, u.FechaNacimiento, u.Dni, u.CorreoElectronico, u.Usuario, u.IdRol, r.Nombre Rol
+        FROM Usuarios u
+        INNER JOIN Roles r ON u.IdRol = r.IdRol
+        WHERE u.IdUsuario = ? AND u.Activo = 1;'''
+    parametros = (id,)
+    result = Db.consultar(sql, parametros, False)    
+    return result

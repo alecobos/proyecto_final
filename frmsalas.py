@@ -69,10 +69,10 @@ class Salas(Toplevel):
         btn_eliminar["command"] = self.eliminar
 
     def obtener_fila(self, event):
-        tvUsuarios = self.nametowidget("tvUsuarios")
-        current_item = tvUsuarios.focus()
+        tvSalas = self.nametowidget("tvSalas")
+        current_item = tvSalas.focus()
         if current_item:
-            data = tvUsuarios.item(current_item)
+            data = tvSalas.item(current_item)
             self.select_id = int(data["text"])
         else:
             self.select_id = -1
