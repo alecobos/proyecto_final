@@ -8,7 +8,7 @@ class Sala(tk.Toplevel):
         super().__init__(master)
         self.master = master    
         #setting title
-        self.title("Sala")
+        self.title("Edición de salas")
         #setting window size
         width=280
         height=240
@@ -23,10 +23,10 @@ class Sala(tk.Toplevel):
         GLabel_696["font"] = ft
         GLabel_696["fg"] = "#333333"
         GLabel_696["justify"] = "right"
-        GLabel_696["text"] = "Nombre de la Sala:"
+        GLabel_696["text"] = "Número de Sala:"
         GLabel_696.place(x=40,y=40,width=110,height=30)
 
-        GLineEdit_335=tk.Entry(self)
+        GLineEdit_335=tk.Entry(self, name="txtNombre")
         GLineEdit_335["borderwidth"] = "1px"
         ft = tkFont.Font(family='Times',size=10)
         GLineEdit_335["font"] = ft
@@ -71,7 +71,7 @@ class Sala(tk.Toplevel):
         GButton_989["justify"] = "center"
         GButton_989["text"] = "Aceptar"
         GButton_989.place(x=90,y=190,width=70,height=25)
-        GButton_989["command"] = self.GButton_989_command
+        GButton_989["command"] = self.aceptar
 
         GButton_820=tk.Button(self)
         GButton_820["bg"] = "#f0f0f0"
@@ -81,12 +81,12 @@ class Sala(tk.Toplevel):
         GButton_820["justify"] = "center"
         GButton_820["text"] = "Cancelar"
         GButton_820.place(x=180,y=190,width=70,height=25)
-        GButton_820["command"] = self.GButton_820_command
+        GButton_820["command"] = self.cancelar
 
-    def GButton_989_command(self):
+    def aceptar(self):
         print("command")
 
 
-    def GButton_820_command(self):
-        print("command")
+    def cancelar(self):
+        self.destroy()
 
