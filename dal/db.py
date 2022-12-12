@@ -71,26 +71,14 @@ class Db:
                         (3, "Operador"),
                         (4, "Cliente");'''
 
-        tablas = {"Roles": sql_roles}
-
-        with sqlite3.connect(database) as cnn:
-            cursor = cnn.cursor()
-            for tabla, sql in tablas.items():
-                print(f"Poblando tabla {tabla}")
-                cursor.execute(f"SELECT COUNT(*) FROM {tabla}")
-                count = int(cursor.fetchone()[0])
-                if count == 0:
-                    cursor.execute(sql)
-
-    @staticmethod
-    def poblar_tablas_salas():            
-        sql_salas = '''insert into Salas (NombreSala, Tipo, Capacidad)
+        sql_salas = '''INSERT INTO Salas (NombreSala, Tipo, Capacidad)
                     Values 
-                        (1, "2D", 50),
-                        (2, "3D", 60),
-                        (3, "4D", 40),
-                        (4, "IMAX", 50);'''
-        tablas = {"Salas": sql_salas}
+                        ("1", "2D", 50),
+                        ("2", "3D", 60),
+                        ("3", "4D", 40),
+                        ("4", "IMAX", 50);'''
+
+        tablas = {"Salas": sql_salas, "Roles": sql_roles} 
 
         with sqlite3.connect(database) as cnn:
             cursor = cnn.cursor()
@@ -100,6 +88,8 @@ class Db:
                 count = int(cursor.fetchone()[0])
                 if count == 0:
                     cursor.execute(sql)
+
+
         
 
     @staticmethod
