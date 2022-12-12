@@ -88,7 +88,7 @@ class Salas(Toplevel):
     def eliminar(self):
         answer =  tkMsgBox.askokcancel(self.master.master.title(), "¿Está seguro de eliminar esta sala?")   
         if answer:
-            Sala.eliminar(self.select_id)
+            rooms.eliminar(self.select_id)
             self.refrescar()
 
     # https://www.youtube.com/watch?v=n0usdtoU5cE
