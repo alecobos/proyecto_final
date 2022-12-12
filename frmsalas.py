@@ -1,6 +1,7 @@
 from tkinter import *
 import tkinter.font as tkFont
 import tkinter.ttk as ttk
+import tkinter.messagebox as tkMsgBox
 import bll.salas as rooms
 from frmsala import Sala
 
@@ -85,7 +86,10 @@ class Salas(Toplevel):
         Sala(self, True, self.select_id)
 
     def eliminar(self):
-        pass
+        answer =  tkMsgBox.askokcancel(self.master.master.title(), "¿Está seguro de eliminar esta sala?")   
+        if answer:
+            Sala.eliminar(self.select_id)
+            self.refrescar()
 
     # https://www.youtube.com/watch?v=n0usdtoU5cE
     def refrescar(self):        
