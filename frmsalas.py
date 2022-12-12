@@ -9,9 +9,9 @@ class Salas(Toplevel):
         super().__init__(master)
         self.select_id = -1
         self.master = master        
-        self.title("Listado de Salas")        
-        width=800
-        height=500
+        self.title("Salas")        
+        width=670
+        height=350
         screenwidth = self.winfo_screenwidth()
         screenheight = self.winfo_screenheight()
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
@@ -27,10 +27,10 @@ class Salas(Toplevel):
         GLabel_464.place(x=10,y=10,width=70,height=25)
 
         tv = ttk.Treeview(self, columns=("nombre", "tipo", "capacidad"), name="tvSalas")
-        tv.column("#0", width=78)
-        tv.column("nombre", width=150, anchor=CENTER)
-        tv.column("tipo", width=150, anchor=CENTER)
-        tv.column("capacidad", width=120, anchor=CENTER)
+        tv.column("#0", width=50)
+        tv.column("nombre", width=100, anchor=CENTER)
+        tv.column("tipo", width=100, anchor=CENTER)
+        tv.column("capacidad", width=90, anchor=CENTER)
 
         tv.heading("#0", text="Id", anchor=CENTER)
         tv.heading("nombre", text="Nombre", anchor=CENTER)
@@ -47,7 +47,7 @@ class Salas(Toplevel):
         btn_agregar["fg"] = "#000000"
         btn_agregar["justify"] = "center"
         btn_agregar["text"] = "Agregar"
-        btn_agregar.place(x=530,y=10,width=70,height=25)
+        btn_agregar.place(x=430,y=10,width=70,height=25)
         btn_agregar["command"] = self.agregar
 
         btn_editar = Button(self)
@@ -56,7 +56,7 @@ class Salas(Toplevel):
         btn_editar["fg"] = "#000000"
         btn_editar["justify"] = "center"
         btn_editar["text"] = "Editar"
-        btn_editar.place(x=610,y=10,width=70,height=25)
+        btn_editar.place(x=510,y=10,width=70,height=25)
         btn_editar["command"] = self.editar
         
         btn_eliminar = Button(self)
@@ -65,24 +65,24 @@ class Salas(Toplevel):
         btn_eliminar["fg"] = "#000000"
         btn_eliminar["justify"] = "center"
         btn_eliminar["text"] = "Eliminar"
-        btn_eliminar.place(x=690,y=10,width=70,height=25)
+        btn_eliminar.place(x=590,y=10,width=70,height=25)
         btn_eliminar["command"] = self.eliminar
 
     def obtener_fila(self, event):
-        tvUsuarios = self.nametowidget("tvUsuarios")
-        current_item = tvUsuarios.focus()
+        tvSalas = self.nametowidget("tvSalas")
+        current_item = tvSalas.focus()
         if current_item:
-            data = tvUsuarios.item(current_item)
+            data = tvSalas.item(current_item)
             self.select_id = int(data["text"])
         else:
             self.select_id = -1
 
     def agregar(self):
-        #User(self, True)
+        Sala(self, True)
         print('agregar')
 
     def editar(self): 
-        pass
+        Sala(self, True, self.select_id)
 
     def eliminar(self):
         pass
@@ -95,4 +95,4 @@ class Salas(Toplevel):
         salas = rooms.listar()
         for room in salas:
             tvSalas.insert("", END, text=room[0], values=(room[1], room[2], room[3]))        
-        tvSalas.place(x=10,y=40,width=750,height=300)
+        tvSalas.place(x=10,y=40,width=650,height=300)
