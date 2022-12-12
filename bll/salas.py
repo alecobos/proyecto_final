@@ -33,3 +33,12 @@ def actualizar(id, nombresala, tipo, capacidad):
     sql = "UPDATE Salas SET NombreSala = ?, Tipo = ?, Capacidad = ? WHERE IdSala = ? ;"
     parametros = (id, nombresala, tipo, capacidad)
     Db.ejecutar(sql, parametros) 
+
+
+def eliminar(id, logical = True):    
+    if logical:
+        sql = "UPDATE Salas SET Activo = 0 WHERE IdSala = ? AND Activo = 1;"
+    else:
+        sql = "DELETE FROM Sala WHERE IdSala = ?;"
+    parametros = (id,)
+    Db.ejecutar(sql, parametros)
