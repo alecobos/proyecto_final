@@ -50,6 +50,7 @@ class Db:
 	                        "NombreSala"	TEXT NOT NULL UNIQUE,
                             "Tipo"	TEXT NOT NULL,
                             "Capacidad"	INTEGER NOT NULL,
+                            "Activo"    INTEGER NOT NULL DEFAULT 1,
                             PRIMARY KEY("IdSala" AUTOINCREMENT)
                         );'''
 

@@ -8,7 +8,8 @@ import bll.roles as rol
 class Sala(tk.Toplevel):
     def __init__(self, master=None, isAdmin = False, id_sala = None):
         super().__init__(master)
-        self.master = master    
+        self.master = master 
+        self.id_sala = id_sala     
         #setting title
         self.title("Edición de salas")
         #setting window size
@@ -62,7 +63,7 @@ class Sala(tk.Toplevel):
         GLabel_829["text"] = "Tipo:"
         GLabel_829.place(x=95,y=120,width=70,height=30)
 
-        cb_tiposala = ttk.Combobox(self, state="readonly", values=["2D", "3D", "4D", "IMAX"])
+        cb_tiposala = ttk.Combobox(self, state="readonly", values=["2D", "3D", "4D", "IMAX"], name="cbtiposala")
         cb_tiposala.place(x=160,y=120,width=80,height=30)
 
         GButton_989=tk.Button(self)
@@ -92,9 +93,10 @@ class Sala(tk.Toplevel):
                tkMsgBox.showerror(self.master.title(), "Se produjo un error al obtener los datos de la sala, reintente nuevamente")
                self.destroy()
             else:
-                GLineEdit_335.insert(0, sala[1])
-                GLineEdit_621.insert(0, sala[3])
-                cb_tiposala.set(sala[2])
+                GLineEdit_335.insert(0, sala[0])
+                GLineEdit_621.insert(0, sala[2])
+                cb_tiposala.insert(0, sala[1])
+                #cb_tiposala.set(sala[2])
 
     def get_value(self, name):
         return self.nametowidget(name).get()
@@ -106,13 +108,13 @@ class Sala(tk.Toplevel):
         try:            
             nombresala = self.get_value("txtNombre")            
             capacidad = self.get_value("txtCapacidad")  
-            tiposala = self.get_index("cb_tiposala")
-            print (tiposala)
+            tiposala = self.get_value("cbtiposala")
+            #print (tiposala)
 
             # TODO validar los datos antes de ingresar
             if not bsala.existe(nombresala):
                 bsala.agregar(nombresala, tiposala, capacidad)
-                tkMsgBox.showinfo(self.master.title(), "Registro agregado!!!!!!")                
+                tkMsgBox.showinfo(self.master.title(), "Sala agregada!")                
                 try:
                     self.master.refrescar()
                 except Exception as ex:
@@ -120,7 +122,8 @@ class Sala(tk.Toplevel):
                 self.destroy()                
             else:
                 print("Actualizacion de sala")
-                bsala.actualizar(self.id_sala, nombresala, tiposala, capacidad)
+                bsala.actualizar(self.id_sala, nombresala, tiposala, capacidad) 
+                print (tiposala)
                 tkMsgBox.showinfo(self.master.title(), "Registro modificado!!!!!!")                
                 self.master.refrescar()
                 self.destroy()  

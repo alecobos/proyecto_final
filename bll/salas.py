@@ -2,21 +2,22 @@ from dal.db import Db
 
 def listar():
     sql = '''SELECT IdSala, NombreSala, Tipo, Capacidad
-            from Salas'''
+            from Salas
+        Where Activo = 1'''
     result = Db.consultar(sql)
     return result
 
 
 def obtener_id(id):
-    sql = '''SELECT IdSala, NombreSala, Tipo, Capacidad
+    sql = '''SELECT NombreSala, Tipo, Capacidad
             from Salas
-        WHERE IdSala = ?;'''
+        WHERE IdSala = ? AND Activo = 1;'''
     parametros = (id,)
     result = Db.consultar(sql, parametros, False)    
     return result
 
 def existe(sala):
-    sql = "SELECT COUNT(*) FROM Salas WHERE Sala = ? ;"
+    sql = "SELECT COUNT(*) FROM Salas WHERE NombreSala = ? AND Activo = 1 ;"
     parametros = (sala,)
     result = Db.consultar(sql, parametros, False)
     count = int(result[0])
