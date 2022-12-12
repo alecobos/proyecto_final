@@ -82,7 +82,7 @@ class Salas(Toplevel):
         print('agregar')
 
     def editar(self): 
-        pass
+        Sala(self, True, self.select_id)
 
     def eliminar(self):
         pass
