@@ -25,3 +25,4 @@ __pycache__/frmusers.cpython-310.pyc
 bll/__pycache__/usuarios.cpython-310.pyc
 __pycache__/frmlogin.cpython-310.pyc
 dal/__pycache__/db.cpython-310.pyc
+*.pyc
