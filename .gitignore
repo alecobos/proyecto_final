@@ -28,3 +28,4 @@ dal/__pycache__/db.cpython-310.pyc
 *.pyc
 __pycache__/frmlogin.cpython-310.pyc
 *.pyc
+*.pyc
