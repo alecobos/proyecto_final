@@ -31,7 +31,7 @@ def agregar(nombresala, tipo, capacidad):
 
 def actualizar(id, nombresala, tipo, capacidad):    
     sql = "UPDATE Salas SET NombreSala = ?, Tipo = ?, Capacidad = ? WHERE IdSala = ? ;"
-    parametros = (id, nombresala, tipo, capacidad)
+    parametros = (nombresala, tipo, capacidad, id)
     Db.ejecutar(sql, parametros) 
 
 

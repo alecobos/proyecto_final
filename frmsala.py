@@ -95,7 +95,7 @@ class Sala(tk.Toplevel):
             else:
                 GLineEdit_335.insert(0, sala[0])
                 GLineEdit_621.insert(0, sala[2])
-                cb_tiposala.insert(0, sala[1])
+                cb_tiposala.set(sala[1])
                 #cb_tiposala.set(sala[2])
 
     def get_value(self, name):
