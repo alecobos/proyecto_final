@@ -3,6 +3,7 @@ import tkinter.font as tkFont
 from frmusers import Users
 from frmsalas import Salas
 from frmpeliculas import Peliculas
+from frmfunciones import Funciones
 
 class Dashboard(tk.Toplevel):
     def __init__(self, master=None):
@@ -36,6 +37,16 @@ class Dashboard(tk.Toplevel):
         Button_peliculas["text"] = "Peliculas"
         Button_peliculas.place(x=10,y=150,width=165,height=45)
         Button_peliculas["command"] = self.abrir_peliculas
+
+        Button_funciones=tk.Button(self)
+        Button_funciones["bg"] = "#f0f0f0"
+        ft = tkFont.Font(family='Times',size=10)
+        Button_funciones["font"] = ft
+        Button_funciones["fg"] = "#000000"
+        Button_funciones["justify"] = "center"
+        Button_funciones["text"] = "Funciones"
+        Button_funciones.place(x=190,y=150,width=165,height=45)
+        Button_funciones["command"] = self.abrir_funciones
 
         GLabel_996=tk.Label(self)
         ft = tkFont.Font(family='Times',size=10)
@@ -73,6 +84,9 @@ class Dashboard(tk.Toplevel):
 
     def abrir_peliculas(self):
         Peliculas(self)
+
+    def abrir_funciones(self):
+        Funciones(self)
 
     def abrir_descuentos(self):
         print("descuentos")
