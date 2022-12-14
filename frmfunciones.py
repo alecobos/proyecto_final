@@ -3,7 +3,7 @@ import tkinter.font as tkFont
 import tkinter.ttk as ttk
 import tkinter.messagebox as tkMsgBox
 import bll.funciones as sesiones
-#from frmfuncion import Funcion
+from frmfuncion import Funcion
 
 class Funciones(Toplevel):
     def __init__(self, master=None):
@@ -45,7 +45,7 @@ class Funciones(Toplevel):
         tv.heading("fecha", text="Fecha", anchor=CENTER)
         tv.heading("hora", text="Hora", anchor=CENTER)
         tv.heading("tipo", text="Tipo", anchor=CENTER)
-        tv.heading("clasificacon", text="Clasificacon", anchor=CENTER)
+        tv.heading("clasificacon", text="Clasificación", anchor=CENTER)
         tv.bind("<<TreeviewSelect>>", self.obtener_fila)          
         
         self.refrescar()
@@ -88,7 +88,7 @@ class Funciones(Toplevel):
             self.select_id = -1
 
     def agregar(self):
-        #Pelicula(self, True)
+        Funcion(self, True)
         print('agregar')
 
     def editar(self): 

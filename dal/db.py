@@ -69,6 +69,7 @@ class Db:
                             "Hora"	TEXT NOT NULL,
                             "IdSala"	INTEGER NOT NULL,
                             "IdPelicula"	INTEGER NOT NULL,
+                            "Activa"	INTEGER NOT NULL DEFAULT 1,
                             PRIMARY KEY("IdFuncion" AUTOINCREMENT)
                         );'''
 
