@@ -17,13 +17,14 @@ class Login(tk.Toplevel):
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         self.geometry(alignstr)
         self.resizable(width=False, height=False)
+        
         GLineEdit_511=tk.Entry(self, name="txtUsuario")
         GLineEdit_511["borderwidth"] = "1px"
         ft = tkFont.Font(family='Times',size=10)
         GLineEdit_511["font"] = ft
         GLineEdit_511["fg"] = "#333333"
         GLineEdit_511["justify"] = "left"
-        GLineEdit_511["text"] = ""
+        GLineEdit_511["text"] = "acobos"
         GLineEdit_511.place(x=110,y=10,width=280,height=25)
 
         GLineEdit_723=tk.Entry(self, name ="txtContrasenia", show="*")
@@ -32,7 +33,7 @@ class Login(tk.Toplevel):
         GLineEdit_723["font"] = ft
         GLineEdit_723["fg"] = "#333333"
         GLineEdit_723["justify"] = "left"
-        GLineEdit_723["text"] = ""
+        GLineEdit_723["text"] = "123456"
         GLineEdit_723.place(x=110,y=50,width=280,height=25)
 
         GLabel_787=tk.Label(self)

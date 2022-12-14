@@ -63,7 +63,17 @@ class Db:
                             PRIMARY KEY("IdPelicula" AUTOINCREMENT)
                         );'''
 
-        tablas = {"Usuarios": sql_usuarios, "Roles": sql_roles, "Salas": sql_salas, "Peliculas": sql_peliculas}
+        sql_funciones = '''CREATE TABLE IF NOT EXISTS "Funciones" (
+                            "IdFuncion"	INTEGER NOT NULL,
+                            "Fecha"	TEXT NOT NULL,
+                            "Hora"	TEXT NOT NULL,
+                            "IdSala"	INTEGER NOT NULL,
+                            "IdPelicula"	INTEGER NOT NULL,
+                            "Activa"	INTEGER NOT NULL DEFAULT 1,
+                            PRIMARY KEY("IdFuncion" AUTOINCREMENT)
+                        );'''
+
+        tablas = {"Usuarios": sql_usuarios, "Roles": sql_roles, "Salas": sql_salas, "Peliculas": sql_peliculas, "Funciones": sql_funciones}
 
         with sqlite3.connect(database) as cnn:
             cursor = cnn.cursor()
