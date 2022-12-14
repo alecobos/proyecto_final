@@ -53,8 +53,17 @@ class Db:
                             "Activo"    INTEGER NOT NULL DEFAULT 1,
                             PRIMARY KEY("IdSala" AUTOINCREMENT)
                         );'''
+        sql_peliculas = '''CREATE TABLE IF NOT EXISTS "Peliculas" (
+                            "IdPelicula"	INTEGER NOT NULL,
+                            "NombrePelicula"	TEXT NOT NULL,
+                            "Genero"	TEXT NOT NULL,
+                            "Idioma"	TEXT NOT NULL,
+                            "Clasificacion"	TEXT NOT NULL,
+                            "Activa"	INTEGER NOT NULL DEFAULT 1,
+                            PRIMARY KEY("IdPelicula" AUTOINCREMENT)
+                        );'''
 
-        tablas = {"Usuarios": sql_usuarios, "Roles": sql_roles, "Salas": sql_salas}
+        tablas = {"Usuarios": sql_usuarios, "Roles": sql_roles, "Salas": sql_salas, "Peliculas": sql_peliculas}
 
         with sqlite3.connect(database) as cnn:
             cursor = cnn.cursor()
@@ -77,8 +86,15 @@ class Db:
                         ("2", "3D", 60),
                         ("3", "4D", 40),
                         ("4", "IMAX", 50);'''
+            
+        sql_peliculas = '''INSERT INTO Peliculas (NombrePelicula, Genero, Idioma, Clasificacion)
+                    Values 
+                        ("Avatar", "Aventura", "Ingles", "+16"),
+                        ("John Wick", "Accion", "Ingles", "+18"),
+                        ("Minions", "Comedia", "Español", "ATP"),
+                        ("El Conjuro 4", "Terror", "Ingles", "+16");'''
 
-        tablas = {"Salas": sql_salas, "Roles": sql_roles} 
+        tablas = {"Salas": sql_salas, "Roles": sql_roles, "Peliculas": sql_peliculas} 
 
         with sqlite3.connect(database) as cnn:
             cursor = cnn.cursor()
