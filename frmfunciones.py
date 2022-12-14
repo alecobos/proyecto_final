@@ -92,7 +92,7 @@ class Funciones(Toplevel):
         print('agregar')
 
     def editar(self): 
-        #Pelicula(self, True, self.select_id)
+        Funcion(self, True, self.select_id)
         print('Editar')
 
     def eliminar(self):

@@ -32,8 +32,8 @@ class Funcion(tk.Toplevel):
         peli = dict(sesiones.listar_peliculas())
 
         cb_Peliculas = ttk.Combobox(self, state="readonly", values=list(peli.values()), name="cbPelicula")
-        cb_Peliculas.set(peli[4])
-        cb_Peliculas.place(x=90,y=30,width=140,height=30)
+        cb_Peliculas.set(peli[1])
+        cb_Peliculas.place(x=90,y=20,width=140,height=30)
 
         GLabel_358=tk.Label(self)
         ft = tkFont.Font(family='Times',size=10)
@@ -46,8 +46,8 @@ class Funcion(tk.Toplevel):
         sala = dict(sesiones.listar_salas())
 
         cb_Salas = ttk.Combobox(self, state="readonly", values=list(sala.values()), name="cbSala")
-        cb_Salas.set(sala[4])
-        cb_Salas.place(x=90,y=65,width=140,height=30)
+        cb_Salas.set(sala[1])
+        cb_Salas.place(x=90,y=55,width=140,height=30)
 
         GLabel_861=tk.Label(self)
         ft = tkFont.Font(family='Times',size=10)
@@ -65,23 +65,23 @@ class Funcion(tk.Toplevel):
         GLabel_357["text"] = "Hora:"
         GLabel_357.place(x=10,y=140,width=70,height=25)
 
-        GLineEdit_125=tk.Entry(self)
+        GLineEdit_125=tk.Entry(self, name="txtFecha")
         GLineEdit_125["borderwidth"] = "1px"
         ft = tkFont.Font(family='Times',size=10)
         GLineEdit_125["font"] = ft
         GLineEdit_125["fg"] = "#333333"
         GLineEdit_125["justify"] = "left"
         GLineEdit_125["text"] = ""
-        GLineEdit_125.place(x=90,y=100,width=140,height=30)
+        GLineEdit_125.place(x=90,y=90,width=140,height=30)
 
-        GLineEdit_765=tk.Entry(self)
+        GLineEdit_765=tk.Entry(self, name="txtHora")
         GLineEdit_765["borderwidth"] = "1px"
         ft = tkFont.Font(family='Times',size=10)
         GLineEdit_765["font"] = ft
         GLineEdit_765["fg"] = "#333333"
         GLineEdit_765["justify"] = "left"
         GLineEdit_765["text"] = ""
-        GLineEdit_765.place(x=90,y=140,width=140,height=30)
+        GLineEdit_765.place(x=90,y=130,width=140,height=30)
 
         GButton_812=tk.Button(self)
         GButton_812["bg"] = "#f0f0f0"
@@ -91,7 +91,7 @@ class Funcion(tk.Toplevel):
         GButton_812["justify"] = "center"
         GButton_812["text"] = "Cancelar"
         GButton_812.place(x=190,y=210,width=70,height=25)
-        GButton_812["command"] = self.aceptar
+        GButton_812["command"] = self.cancelar
 
         GButton_420=tk.Button(self)
         GButton_420["bg"] = "#f0f0f0"
@@ -101,13 +101,56 @@ class Funcion(tk.Toplevel):
         GButton_420["justify"] = "center"
         GButton_420["text"] = "Aceptar"
         GButton_420.place(x=100,y=210,width=70,height=25)
-        GButton_420["command"] = self.cancelar
+        GButton_420["command"] = self.aceptar
 
-    def aceptar(self):
-        print("command")
 
+        if id_funcion is not None:
+            funcion = sesiones.obtener_id(id_funcion)
+            if funcion is None:
+                tkMsgBox.showerror(self.master.title(), "Se produjo un error al obtener los datos de la función, reintente nuevamente")
+                self.destroy()
+            else:
+                # TODO bloquear el campo usuario
+                cb_Peliculas.set(funcion[1])
+                cb_Salas.set(funcion[3])
+                GLineEdit_125.insert(0, funcion[4]) # TODO corregir formato de fecha
+                GLineEdit_765.insert(0, funcion[5])
+
+    def get_value(self, name):
+        return self.nametowidget(name).get()
+
+    def get_index(self, name):
+        return self.nametowidget(name).current() + 1
 
     def cancelar(self):
         self.destroy()
+
+    def aceptar(self):
+        try:            
+            pelicula = self.get_index("cbPelicula")
+            sala = self.get_index("cbSala")            
+            fecha = self.get_value("txtFecha")            
+            hora = self.get_value("txtHora")
+
+            # TODO validar los datos antes de ingresar
+            if not sesiones.existe(pelicula):
+                sesiones.agregar(fecha, hora, pelicula, sala)
+                tkMsgBox.showinfo(self.master.title(), "Función agregada!!!!!!")                
+                try:
+                    self.master.refrescar()
+                except Exception as ex:
+                    print(ex)
+                self.destroy()                
+            else:
+                print("Actualizacion de función")
+                sesiones.actualizar(self.id_funcion, fecha, hora, pelicula, sala)  # TODO ver el tema de la contraseña
+                tkMsgBox.showinfo(self.master.title(), "funcion modificada!!!!!!")                
+                self.master.refrescar()
+                self.destroy()  
+
+        except Exception as ex:
+            tkMsgBox.showerror(self.master.title(), str(ex))
+
+
 
 

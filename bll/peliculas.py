@@ -37,7 +37,7 @@ def actualizar(id, nombrepelicula, genero, idioma, clasificacion):
 
 def eliminar(id, logical = True):    
     if logical:
-        sql = "UPDATE Peliculas SET Activo = 0 WHERE IdPelicula = ? AND Activa = 1;"
+        sql = "UPDATE Peliculas SET Activa = 0 WHERE IdPelicula = ? AND Activa = 1;"
     else:
         sql = "DELETE FROM Peliculas WHERE IdPelicula = ?;"
     parametros = (id,)
