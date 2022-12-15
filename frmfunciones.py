@@ -11,7 +11,7 @@ class Funciones(Toplevel):
         self.select_id = -1
         self.master = master        
         self.title("Funciones")        
-        width=720
+        width=820
         height=350
         screenwidth = self.winfo_screenwidth()
         screenheight = self.winfo_screenheight()
@@ -27,7 +27,7 @@ class Funciones(Toplevel):
         GLabel_464["text"] = "Funciones:"
         GLabel_464.place(x=10,y=10,width=70,height=25)
 
-        tv = ttk.Treeview(self, columns=("pelicula", "idioma", "sala", "fecha", "hora", "tipo", "clasificacon"), name="tvFunciones")
+        tv = ttk.Treeview(self, columns=("pelicula", "idioma", "sala", "fecha", "hora", "tipo", "clasificacion", "precio"), name="tvFunciones")
         tv.column("#0", width=5)
         tv.column("pelicula", width=100, anchor=CENTER)
         tv.column("idioma", width=30, anchor=CENTER)
@@ -35,7 +35,8 @@ class Funciones(Toplevel):
         tv.column("fecha", width=30, anchor=CENTER)
         tv.column("hora", width=10, anchor=CENTER)
         tv.column("tipo", width=10, anchor=CENTER)
-        tv.column("clasificacon", width=10, anchor=CENTER)
+        tv.column("clasificacion", width=10, anchor=CENTER)
+        tv.column("precio", width=10, anchor=CENTER)
 
 
         tv.heading("#0", text="Id", anchor=CENTER)
@@ -45,7 +46,8 @@ class Funciones(Toplevel):
         tv.heading("fecha", text="Fecha", anchor=CENTER)
         tv.heading("hora", text="Hora", anchor=CENTER)
         tv.heading("tipo", text="Tipo", anchor=CENTER)
-        tv.heading("clasificacon", text="Clasificación", anchor=CENTER)
+        tv.heading("clasificacion", text="Clasificación", anchor=CENTER)
+        tv.heading("precio", text="Precio", anchor=CENTER)
         tv.bind("<<TreeviewSelect>>", self.obtener_fila)          
         
         self.refrescar()
@@ -98,9 +100,8 @@ class Funciones(Toplevel):
     def eliminar(self):
         answer =  tkMsgBox.askokcancel(self.master.master.title(), "¿Está seguro de eliminar esta sala?")   
         if answer:
-            #movies.eliminar(self.select_id)
-            #self.refrescar()
-            print('Eliminar')
+            sesiones.eliminar(self.select_id)
+            self.refrescar()
 
     # https://www.youtube.com/watch?v=n0usdtoU5cE
     def refrescar(self):        
@@ -109,5 +110,5 @@ class Funciones(Toplevel):
             tvFunciones.delete(record)
         funciones = sesiones.listar()
         for funci in funciones:
-            tvFunciones.insert("", END, text=funci[0], values=(funci[1], funci[2], funci[3], funci[4], funci[5], funci[6], funci[7]))        
-        tvFunciones.place(x=10,y=40,width=700,height=300)
+            tvFunciones.insert("", END, text=funci[0], values=(funci[1], funci[2], funci[3], funci[4], funci[5], funci[6], funci[7], funci[8]))        
+        tvFunciones.place(x=10,y=40,width=800,height=300)
