@@ -162,7 +162,7 @@ class Funcion(tk.Toplevel):
                 self.destroy()                
             else:
                 print("Actualizacion de función")
-                sesiones.actualizar(self.id_funcion, fecha, hora, id_pelicula, sala, precio)  # TODO ver que no esta cargando bien
+                sesiones.actualizar(self.id_funcion, fecha, hora, sala, id_pelicula, precio)  # TODO ver que no esta cargando bien
                 tkMsgBox.showinfo(self.master.title(), "funcion modificada!!!!!!")                
                 self.master.refrescar()
                 self.destroy()  
