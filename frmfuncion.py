@@ -154,9 +154,20 @@ class Funcion(tk.Toplevel):
             hora = self.get_value("txtHora")
             precio = self.get_value("txtPrecio")
 
-            # TODO validar los datos antes de ingresar
-            if sesiones.existe(id_pelicula, sala, fecha, hora): #no ternima de funcionar bien
-                sesiones.agregar(fecha, hora, id_pelicula, sala, precio)
+            if fecha == "":
+                tkMsgBox.showerror(self.master.title(), "La fecha es un valor requerido.")
+                return
+
+            if fecha == "":
+                tkMsgBox.showerror(self.master.title(), "La hora es un valor requerido.")
+                return
+
+            if fecha == "":
+                tkMsgBox.showerror(self.master.title(), "El precio es un valor requerido.")
+                return
+
+            if not sesiones.existe(id_pelicula, sala, fecha, hora): #no ternima de funcionar bien
+                sesiones.agregar(fecha, hora, sala, id_pelicula, precio)
                 tkMsgBox.showinfo(self.master.title(), "Función agregada!!!!!!")                
                 try:
                     self.master.refrescar()
