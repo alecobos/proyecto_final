@@ -4,6 +4,7 @@ import tkinter.font as tkFont
 import tkinter.messagebox as tkMsgBox
 import bll.peliculas as movies
 import bll.funciones as sesiones
+from datetime import date
 
 class Funcion(tk.Toplevel):
     def __init__(self, master=None, isAdmin = False, id_funcion = None):
@@ -131,6 +132,8 @@ class Funcion(tk.Toplevel):
                 cb_Peliculas.set(funcion[1])
                 cb_Salas.set(funcion[3])
                 GLineEdit_125.insert(0, funcion[4]) # TODO corregir formato de fecha
+                #fecha = date(int(funcion[4][:4]), int(funcion[4][5:7]), int(funcion[4][8:]))
+                #GLineEdit_125.insert(0, fecha.strftime(r"%d/%m/%Y"))
                 GLineEdit_765.insert(0, funcion[5])
                 GLineEdit_700.insert(0, funcion[8])
 
@@ -152,7 +155,7 @@ class Funcion(tk.Toplevel):
             precio = self.get_value("txtPrecio")
 
             # TODO validar los datos antes de ingresar
-            if sesiones.existe(id_pelicula, sala, fecha, hora):
+            if sesiones.existe(id_pelicula, sala, fecha, hora): #no ternima de funcionar bien
                 sesiones.agregar(fecha, hora, id_pelicula, sala, precio)
                 tkMsgBox.showinfo(self.master.title(), "Función agregada!!!!!!")                
                 try:

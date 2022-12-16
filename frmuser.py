@@ -5,6 +5,7 @@ import tkinter.font as tkFont
 import tkinter.messagebox as tkMsgBox
 import bll.usuarios as user
 import bll.roles as rol
+from datetime import date
 
 class User(Toplevel):
     def __init__(self, master=None, isAdmin = False, user_id = None):
@@ -198,13 +199,14 @@ class User(Toplevel):
                tkMsgBox.showerror(self.master.title(), "Se produjo un error al obtener los datos del usuario, reintente nuevamente")
                self.destroy()
             else:
-                # TODO bloquear el campo usuario
                 GLineEdit_871.insert(0, usuario[1])
                 GLineEdit_911.insert(0, usuario[2])
-                GLineEdit_208.insert(0, usuario[3]) # TODO corregir formato de fecha
+                fecha_nac = date(int(usuario[3][:4]), int(usuario[3][5:7]), int(usuario[3][8:]))
+                GLineEdit_208.insert(0, fecha_nac.strftime(r"%d/%m/%Y")) 
                 GLineEdit_234.insert(0, usuario[4])
                 GLineEdit_384.insert(0, usuario[5])
-                GLineEdit_481.insert(0, usuario[6])                
+                GLineEdit_481.insert(0, usuario[6]) 
+                GLineEdit_481["state"] = "disabled"               
                 cb_roles.set(usuario[8])
 
     def get_value(self, name):
@@ -228,8 +230,37 @@ class User(Toplevel):
             contrasenia = self.get_value("txtContrasenia")            
             confirmacion = self.get_value("txtConfirmacion")
             Id_rol = self.get_index("cbRoles")
+            
+                                  
+            if apellido == "":
+                tkMsgBox.showerror(self.master.title(), "Apellido es un valor requerido.")
+                return
+            if nombre == "":
+                tkMsgBox.showerror(self.master.title(), "Nombre es un valor requerido.")
+                return
+            if fecha_nac == "":
+                tkMsgBox.showerror(self.master.title(), "La fecha de nacimiento es un valor requerido.")
+                return
+            if dni == "":
+                tkMsgBox.showerror(self.master.title(), "DNI es un valor requerido.")
+                return
+            if email == "":
+                tkMsgBox.showerror(self.master.title(), "E-Mail es un valor requerido.")
+                return
+            if usuario == "":
+                tkMsgBox.showerror(self.master.title(), "Usuario es un valor requerido.")
+                return
+            if contrasenia == "":
+                tkMsgBox.showerror(self.master.title(), "Contraseña es un valor requerido.")
+                return
+            if confirmacion == "":
+                tkMsgBox.showerror(self.master.title(), "Confirmación de la contraseña es un valor requerido.")
+                return
+            if contrasenia != confirmacion:
+                tkMsgBox.showerror(self.master.title(), "La contraseña con su confirmacion no tienen el mismo valor.")
+                return  
 
-            # TODO validar los datos antes de ingresar
+            
             if not user.existe(usuario):
                 user.agregar(apellido, nombre, fecha_nac, dni, email, usuario, contrasenia, Id_rol)
                 tkMsgBox.showinfo(self.master.title(), "Registro agregado!!!!!!")                
