@@ -152,7 +152,7 @@ class Funcion(tk.Toplevel):
             precio = self.get_value("txtPrecio")
 
             # TODO validar los datos antes de ingresar
-            if not sesiones.existe(id_pelicula, sala, fecha, hora):
+            if sesiones.existe(id_pelicula, sala, fecha, hora):
                 sesiones.agregar(fecha, hora, id_pelicula, sala, precio)
                 tkMsgBox.showinfo(self.master.title(), "Función agregada!!!!!!")                
                 try:
