@@ -152,7 +152,7 @@ class Funcion(tk.Toplevel):
             precio = self.get_value("txtPrecio")
 
             # TODO validar los datos antes de ingresar
-            if not sesiones.existe(id_pelicula, sala, fecha, hora):
+            if sesiones.existe(id_pelicula, sala, fecha, hora):
                 sesiones.agregar(fecha, hora, id_pelicula, sala, precio)
                 tkMsgBox.showinfo(self.master.title(), "Función agregada!!!!!!")                
                 try:
@@ -162,7 +162,7 @@ class Funcion(tk.Toplevel):
                 self.destroy()                
             else:
                 print("Actualizacion de función")
-                sesiones.actualizar(self.id_funcion, fecha, hora, id_pelicula, sala, precio)  # TODO ver que no esta cargando bien
+                sesiones.actualizar(self.id_funcion, fecha, hora, sala, id_pelicula, precio)  # TODO ver que no esta cargando bien
                 tkMsgBox.showinfo(self.master.title(), "funcion modificada!!!!!!")                
                 self.master.refrescar()
                 self.destroy()  
