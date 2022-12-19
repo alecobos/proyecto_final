@@ -166,14 +166,16 @@ class Funcion(tk.Toplevel):
                 tkMsgBox.showerror(self.master.title(), "El precio es un valor requerido.")
                 return
 
-            if not sesiones.existe(id_pelicula, sala, fecha, hora): #no ternima de funcionar bien
-                sesiones.agregar(fecha, hora, sala, id_pelicula, precio)
-                tkMsgBox.showinfo(self.master.title(), "Función agregada!!!!!!")                
-                try:
-                    self.master.refrescar()
-                except Exception as ex:
-                    print(ex)
-                self.destroy()                
+            if self.id_funcion is None:
+                print("Alta de función")
+                if not sesiones.existe(id_pelicula, sala, fecha, hora): 
+                    sesiones.agregar(fecha, hora, sala, id_pelicula, precio)
+                    tkMsgBox.showinfo(self.master.title(), "Función agregada!!!!!!")                
+                    try:
+                        self.master.refrescar()
+                    except Exception as ex:
+                        print(ex)
+                    self.destroy()                
             else:
                 print("Actualizacion de función")
                 sesiones.actualizar(self.id_funcion, fecha, hora, sala, id_pelicula, precio)  # TODO ver que no esta cargando bien
