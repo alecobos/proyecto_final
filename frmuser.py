@@ -6,6 +6,7 @@ import tkinter.messagebox as tkMsgBox
 import bll.usuarios as user
 import bll.roles as rol
 from datetime import date
+import re
 
 class User(Toplevel):
     def __init__(self, master=None, isAdmin = False, user_id = None):
@@ -244,9 +245,10 @@ class User(Toplevel):
             if dni == "":
                 tkMsgBox.showerror(self.master.title(), "DNI es un valor requerido.")
                 return
-            if email == "":
-                tkMsgBox.showerror(self.master.title(), "E-Mail es un valor requerido.")
-                return
+            if email != "":
+                if not re.match('^[(a-z0-9\_\-\.)]+@[(a-z0-9\_\-\.)]+\.[(a-z)]{2,15}$',email.lower()):
+                    tkMsgBox.showerror(self.master.title(), "email invalido")
+                    return
             if usuario == "":
                 tkMsgBox.showerror(self.master.title(), "Usuario es un valor requerido.")
                 return

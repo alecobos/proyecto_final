@@ -4,6 +4,7 @@ import tkinter.messagebox as tkMsgBox
 from frmuser import User
 from frmdashboard import Dashboard
 import bll.usuarios as user
+from MenuUsuario import MenUsuario
 
 class Login(tk.Toplevel):
     def __init__(self, master=None):
@@ -93,8 +94,14 @@ class Login(tk.Toplevel):
 
             if usuario != "":
                 if user.validar(usuario, contrasenia):
-                    Dashboard(self.master)
-                    self.destroy()
+                    usuario = user.obtener_nombre_usuario(usuario)
+                    if usuario is not None:
+                        if usuario[8] == "Administrador":
+                            Dashboard(self.master)
+                            self.destroy()
+                        elif usuario[8] == "Cliente":
+                             MenUsuario(self.master)
+                    
                 else:
                     tkMsgBox.showwarning(self.master.title(), "Usuario/Contraseña incorrecta")
             else:

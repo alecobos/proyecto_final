@@ -73,8 +73,17 @@ class Db:
                             "Activa"	INTEGER NOT NULL DEFAULT 1,
                             PRIMARY KEY("IdFuncion" AUTOINCREMENT)
                         );'''
+        sql_Reserva = ''' CREATE TABLE IF NOT EXISTS "Reserva" (
+	                        "Idreserva"	INTEGER NOT NULL,
+	                        "IdPeli"	INTEGER NOT NULL,
+	                        "fecha"	TEXT(30) NOT NULL,
+                            "Idioma" TEXT(30) NOT NULL,
+	                        "hora"	TEXT(50) NOT NULL,
+	                        "Activo"	INTEGER NOT NULL DEFAULT 1,
+	                        PRIMARY KEY("Idreserva" AUTOINCREMENT)
+                        )'''
 
-        tablas = {"Usuarios": sql_usuarios, "Roles": sql_roles, "Salas": sql_salas, "Peliculas": sql_peliculas, "Funciones": sql_funciones}
+        tablas = {"Usuarios": sql_usuarios, "Roles": sql_roles, "Salas": sql_salas, "Peliculas": sql_peliculas, "Funciones": sql_funciones,"Reserva": sql_Reserva}
 
         with sqlite3.connect(database) as cnn:
             cursor = cnn.cursor()
@@ -104,8 +113,9 @@ class Db:
                         ("John Wick", "Accion", "Ingles", "+18"),
                         ("Minions", "Comedia", "Español", "ATP"),
                         ("El Conjuro 4", "Terror", "Ingles", "+16");'''
+        
 
-        tablas = {"Salas": sql_salas, "Roles": sql_roles, "Peliculas": sql_peliculas} 
+        tablas = {"Salas": sql_salas, "Roles": sql_roles, "Peliculas": sql_peliculas,} 
 
         with sqlite3.connect(database) as cnn:
             cursor = cnn.cursor()

@@ -18,6 +18,16 @@ def eliminar(id, logical = True):
     parametros = (id,)
     Db.ejecutar(sql, parametros)
 
+
+def obtener_nombre_usuario(usuario):
+    sql = '''SELECT u.IdUsuario, u.Apellido, u.Nombre, u.FechaNacimiento, u.Dni, u.CorreoElectronico, u.Usuario, u.IdRol, r.Nombre Rol
+            FROM Usuarios u
+            INNER JOIN Roles r ON u.IdRol = r.IdRol
+            WHERE u.Usuario = ? AND u.Activo = 1;'''
+    parametros = (usuario,)
+    result = Db.consultar(sql, parametros, False)    
+    return result
+
 def listar():
     sql = '''SELECT u.IdUsuario, u.Apellido, u.Nombre, u.FechaNacimiento, u.Dni, u.CorreoElectronico, u.Usuario, u.IdRol, r.Nombre Rol
             FROM Usuarios u
